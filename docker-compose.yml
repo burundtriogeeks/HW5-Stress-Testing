@@ -26,19 +26,6 @@ services:
       - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
       - "./web:/var/www/html"
 
-  myadmin:
-    image: phpmyadmin/phpmyadmin
-    platform: linux/x86_64
-    container_name: phpmyadmin
-    ports:
-      - "8080:80"
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=${MYSQL_HOST}
-    restart: always
-    depends_on:
-      - mysqldb
-
   mysqldb:
     image: mysql:${MYSQL_VERSION}
     platform: linux/x86_64
@@ -57,3 +44,9 @@ services:
       - "./data/db/mysql:/var/lib/mysql"
       - "./etc/mysql/Clients_structure.sql:/docker-entrypoint-initdb.d/1.sql"
       - "./etc/mysql/Clients_data.sql:/docker-entrypoint-initdb.d/2.sql"
+
+  siege:
+    image: ecliptik/docker-siege
+    platform: linux/x86_64
+
+
