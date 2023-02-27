@@ -60,3 +60,14 @@ if (isset($_GET["random_country_count"])) {
     exit;
 }
 
+if (isset($_GET["all_records_count"])) {
+    $res = mysqli_query($db, "SELECT count(1) as `all_records` FROM `Clients` WHERE 1");
+    if (mysqli_num_rows($res)) {
+        $row = mysqli_fetch_assoc($res);
+        echo $row["all_records"]." clients in DB";
+    } else {
+        echo "0 clients in DB";
+    }
+    exit;
+}
+
