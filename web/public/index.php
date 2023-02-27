@@ -48,26 +48,26 @@
         exit;
     }
 
-if (isset($_GET["random_country_count"])) {
-    $country = $country_list[array_rand($country_list)];
-    $res = mysqli_query($db, "SELECT count(1) as `connections` FROM `Clients` WHERE `country` = '$country'");
-    if (mysqli_num_rows($res)) {
-        $row = mysqli_fetch_assoc($res);
-        echo $row["connections"]." clients from $country";
-    } else {
-        echo "0 clients from $country";
+    if (isset($_GET["random_country_count"])) {
+        $country = $country_list[array_rand($country_list)];
+        $res = mysqli_query($db, "SELECT count(1) as `connections` FROM `Clients` WHERE `country` = '$country'");
+        if (mysqli_num_rows($res)) {
+            $row = mysqli_fetch_assoc($res);
+            echo $row["connections"]." clients from $country";
+        } else {
+            echo "0 clients from $country";
+        }
+        exit;
     }
-    exit;
-}
 
-if (isset($_GET["all_records_count"])) {
-    $res = mysqli_query($db, "SELECT count(1) as `all_records` FROM `Clients` WHERE 1");
-    if (mysqli_num_rows($res)) {
-        $row = mysqli_fetch_assoc($res);
-        echo $row["all_records"]." clients in DB";
-    } else {
-        echo "0 clients in DB";
+    if (isset($_GET["all_records_count"])) {
+        $res = mysqli_query($db, "SELECT count(1) as `all_records` FROM `Clients` WHERE 1");
+        if (mysqli_num_rows($res)) {
+            $row = mysqli_fetch_assoc($res);
+            echo $row["all_records"]." clients in DB";
+        } else {
+            echo "0 clients in DB";
+        }
+        exit;
     }
-    exit;
-}
 
